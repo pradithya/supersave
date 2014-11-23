@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     File created by the Android Action Bar Style Generator
+
+     Copyright (C) 2011 The Android Open Source Project
+     Copyright (C) 2012 readyState Software Ltd
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+  
+          http://www.apache.org/licenses/LICENSE-2.0
+  
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+
+    <color name="pressed_01">#CCFFBB33</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="white_action_bar">#CCFFFFFF</color>
+    <color name="light_blue">#FF33FFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="grey">#FFFFFAFA</color>
+    <color name="dark_grey">#FFBDC3C7</color>
+    <color name="grey_trans">#C0EAEAEA</color>
+    <color name="pitch_black">#CC000000</color>
+    <color name="grey_tab">#FF95A5A6</color>
+    <color name="trans">#00000000</color>
+    <color name="silver">#FFBDC3C7</color>
+    <color name="concrete">#FF95A5A6</color>
+    <color name="asbestos">#FF7F8C8D</color>
+    <color name="pomegra">#FFc0392b</color>
+    <color name="soft_red">#FFFF4444</color>
+    <color name="alizarin">#FFE74C3C</color>
+    <color name="trans_red">#10FF0000</color>
+    <color name="orange">#FFF39C12</color>
+    <color name="sunflower">#FFF1C40F</color>
+    <color name="cloud">#FFECF0F1</color>
+    <color name="carrot">#FFE67E22</color>
+    <color name="pumpkin">#FFD35400</color>
+    <color name="amethyst">#FF9B59B6</color>
+    <color name="wisteria">#FF8E44AD</color>
+    <color name="belize_hole">#FF2980B9</color>
+    <color name="peter_river">#FF3498DB</color>
+    <color name="emerald">#FF2ECC71</color>
+    <color name="nephritis">#FF27AE60</color>
+
+</resources>

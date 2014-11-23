@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Supersave</string>
+
+    <string name="title_section1">Dashboard</string>
+    <string name="title_section2">Expenses</string>
+    <string name="title_section3">Saving Goals</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="title_activity_login">Login</string>
+    <string name="hello_world">Hello world!</string>
+
+    <!--LoginActivity-->
+    <string name="login_user_name_title">Name</string>
+    <string name="login_budget_title">Monthly Budget</string>
+    <string name="login_cycle_date_title">Cycle Date</string>
+    <string name="login_first_time_budget_title">Budget Until Cycle Date</string>
+    <string name="login_cycle_date_help">You have x days until first cycle</string>
+
+    <string name="login_user_name_default">John</string>
+    <string name="login_budget_default">2000</string>
+    <string name="login_cycle_date_default">1st</string>
+    <string name="login_first_time_budget_default">500 (less than monthly budget)</string>
+    <string name="action_go">Confirm</string>
+
+</resources>
