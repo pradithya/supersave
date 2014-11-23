@@ -15,11 +15,13 @@
     <string name="hello_world">Hello world!</string>
 
     <!--LoginActivity-->
+    <string name="login_welcome_text1">Welcome to Supersave!</string>
+    <string name="login_welcome_text2">Set your monthly budget and a date to reset budget every month</string>
     <string name="login_user_name_title">Name</string>
     <string name="login_budget_title">Monthly Budget</string>
-    <string name="login_cycle_date_title">Cycle Date</string>
+    <string name="login_cycle_date_title">Reset Date</string>
     <string name="login_first_time_budget_title">Budget Until Cycle Date</string>
-    <string name="login_cycle_date_help">You have x days until first cycle</string>
+    <string name="login_cycle_date_help">You have {rem_day} days until your first reset date, set your starting budget</string>
 
     <string name="login_user_name_default">John</string>
     <string name="login_budget_default">2000</string>

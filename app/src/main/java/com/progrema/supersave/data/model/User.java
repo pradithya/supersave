@@ -14,16 +14,17 @@ public class User {
     private String name;
     private Currency defaultCurrency;
     private Money defaultMonthlyBudget;
+
     private Money remainingBudget;
     private int cycleDate;
     private int activeBudgetId;
     private Money totalSaving;
 
-    public User(String name, Currency defaultCurrency, Money monthlyBudget, Money remainingBudget, int cycleDate) {
+    public User(String name, Currency defaultCurrency, Money monthlyBudget, int cycleDate) {
         this.name = name;
         this.defaultCurrency = defaultCurrency;
         this.defaultMonthlyBudget = monthlyBudget;
-        this.remainingBudget = remainingBudget;
+        this.remainingBudget = monthlyBudget;
         this.cycleDate = cycleDate;
         this.activeBudgetId = 0;
         totalSaving = new Money(defaultCurrency, 0);
@@ -31,6 +32,10 @@ public class User {
 
     public Money getRemainingBudget() {
         return remainingBudget;
+    }
+
+    public void setRemainingBudget(Money remainingBudget) {
+        this.remainingBudget = remainingBudget;
     }
 
 

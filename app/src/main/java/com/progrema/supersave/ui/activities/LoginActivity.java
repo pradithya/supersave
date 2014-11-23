@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.progrema.supersave.R;
 import com.progrema.supersave.data.db.SupersaveContract;
@@ -20,9 +21,11 @@ import com.progrema.supersave.data.model.Money;
 import com.progrema.supersave.data.model.User;
 import com.progrema.supersave.util.SupersaveAsynchQueryHandler;
 
-import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Currency;
+
+import com.progrema.supersave.util.Utils;
+import com.squareup.phrase.Phrase;
 
 public class LoginActivity extends ActionBarActivity {
 
@@ -82,7 +85,8 @@ public class LoginActivity extends ActionBarActivity {
                 Calendar firstCycleDate = Calendar.getInstance();
                 firstCycleDate.set(Calendar.DATE,newUser.getCycleDate());
                 firstCycleDate.add(Calendar.MONTH, 1);
-                Budget newBudget = new Budget(today.getTime(), firstCycleDate.getTime(), newUser.getRemainingBudget());
+                Budget newBudget = new Budget(today.getTime(), firstCycleDate.getTime(),
+                        newUser.getRemainingBudget());
 
                 /*append new budget to content to be passed to our content provider*/
                 ContentValues values = newUser.getContentValue();
@@ -116,8 +120,6 @@ public class LoginActivity extends ActionBarActivity {
    private void errorHandler(int errorCode) {
 
         if(errorCode == CYCLE_DATE_NOT_EQUAL_TODAY){
-            //show
-
             firstTimeBudgetContainer.setVisibility(View.VISIBLE);
             return;
         }
@@ -127,34 +129,39 @@ public class LoginActivity extends ActionBarActivity {
 
     private User getUserData() throws LoginException {
 
-        String name;
+        String name = "USER" ;
         Money monthlyBudget;
         Money firstTimeBudget = null;
         Currency defaultCurrency;
         int cycleDate;
 
         /*get name*/
-        try {
-            name = ((EditText) findViewById(R.id.id_login_name_textbox)).getText().toString();
-        } catch (Exception ex){
-            throw new LoginException(NAME_NOK);
-        }
+//        try {
+//            name = ((EditText) findViewById(R.id.id_login_name_textbox)).getText().toString();
+//        } catch (Exception ex){
+//            throw new LoginException(NAME_NOK);
+//        }
 
         /*get cycle date*/
         try {
-            cycleDate = Integer.parseInt(((EditText) findViewById(R.id.id_login_cycle_date_textbox)).getText().toString());
+            cycleDate = Integer.parseInt(((EditText) findViewById(R.id.id_login_cycle_date_textbox))
+                    .getText().toString());
         } catch (Exception ex) {
             throw new LoginException(CYCLE_DATE_NOK);
         }
 
-        if ((cycleDate != Calendar.getInstance().get(Calendar.DATE)
-                && (firstTimeBudgetContainer.getVisibility() == View.GONE))){
-            throw new LoginException(CYCLE_DATE_NOT_EQUAL_TODAY);
+        int todayDate =  Calendar.getInstance().get(Calendar.DATE);
+        if (cycleDate != todayDate){
+            setRemainingDayInfo(Utils.getDayDiff(todayDate,cycleDate));
+            if (firstTimeBudgetContainer.getVisibility() == View.GONE) {
+                throw new LoginException(CYCLE_DATE_NOT_EQUAL_TODAY);
+            }
         }
 
         /*get budget*/
         try {
-            int amountIn = Integer.parseInt(((EditText) findViewById(R.id.id_login_budget_textbox)).getText().toString());
+            int amountIn = Integer.parseInt(((EditText) findViewById(R.id.id_login_budget_textbox))
+                    .getText().toString());
             //TODO get currency from spinner
             defaultCurrency = Currency.getInstance("SGD");
             monthlyBudget = new Money(defaultCurrency, amountIn);
@@ -163,18 +170,30 @@ public class LoginActivity extends ActionBarActivity {
             throw new LoginException(BUDGET_NOK);
         }
 
+        //create new user
+        User newUser = new User(name, defaultCurrency, monthlyBudget, cycleDate);
+
         try {
             if (firstTimeBudgetContainer.getVisibility() == View.VISIBLE) {
-                int firstTimeBudgetAmount = Integer.parseInt(((EditText) findViewById(R.id.id_login_first_time_budget)).getText().toString());
+                int firstTimeBudgetAmount = Integer
+                        .parseInt(((EditText) findViewById(R.id.id_login_first_time_budget))
+                                .getText().toString());
                 firstTimeBudget = new Money(defaultCurrency, firstTimeBudgetAmount);
+                newUser.setRemainingBudget(firstTimeBudget);
             }
         } catch (Exception ex) {
             throw new LoginException(FIRST_TIME_BUDGET_NOK);
         }
 
-        //create new user
-        User newUser = new User(name, defaultCurrency, monthlyBudget, firstTimeBudget,  cycleDate);
         return newUser;
+    }
+
+    private void setRemainingDayInfo(int diff){
+        CharSequence info = Phrase.from(this.getString(R.string.login_cycle_date_help))
+                .put("rem_day", String.valueOf(diff))
+                .format();
+        TextView helpText = (TextView) findViewById(R.id.id_login_help_text);
+        helpText.setText(info);
     }
 
     private class LoginException extends Exception {
