@@ -1,7 +1,15 @@
 package com.progrema.supersave.util;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Currency;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 
 /**
  * Created by Dell on 11/23/2014.
@@ -28,5 +36,24 @@ public class Utils {
         diff = (int)((endMillis - startMillis)/DAY_MILLIS);
 
         return diff;
+    }
+
+    public static List<String> getAllCurrenciesCode()
+    {
+        Set<String> toret = new HashSet<>();
+
+        Locale[] locs = Locale.getAvailableLocales();
+
+        for(Locale loc : locs) {
+            try {
+                toret.add( Currency.getInstance( loc ).getCurrencyCode() );
+            } catch(Exception exc)
+            {
+                // Locale not found
+            }
+        }
+        List<String> currencyCode = new ArrayList<String>(toret);
+        Collections.sort(currencyCode);
+        return currencyCode;
     }
 }

@@ -1,17 +1,16 @@
 package com.progrema.supersave.ui.activities;
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.opengl.Visibility;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.progrema.supersave.R;
@@ -23,6 +22,8 @@ import com.progrema.supersave.util.SupersaveAsynchQueryHandler;
 
 import java.util.Calendar;
 import java.util.Currency;
+import java.util.Locale;
+import java.util.Set;
 
 import com.progrema.supersave.util.Utils;
 import com.squareup.phrase.Phrase;
@@ -41,7 +42,7 @@ public class LoginActivity extends ActionBarActivity {
     private final int CYCLE_DATE_NOT_EQUAL_TODAY = 100;
 
     private RelativeLayout firstTimeBudgetContainer;
-
+    private Spinner spinnerCurrencySelection;
     /**********************************************************************
      *************************** Callback Section **************************
      **********************************************************************/
@@ -50,7 +51,11 @@ public class LoginActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         firstTimeBudgetContainer = (RelativeLayout) findViewById(R.id.first_time_budget_container);
+
+        setUpCurrencySelector();
+
     }
 
 
@@ -113,6 +118,28 @@ public class LoginActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**********************************************************************
+     ****************** Spinner Setup and Callback ************************
+     **********************************************************************/
+    private void setUpCurrencySelector() {
+        spinnerCurrencySelection = (Spinner) findViewById(R.id.id_login_currency);
+
+        //create array adapter for currency spinner containing all possible currency
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item ,
+                Utils.getAllCurrenciesCode());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        //get local currency string
+        String localCurrency = Currency.getInstance(Locale.getDefault()).getCurrencyCode();
+
+        //attach the adapter
+        spinnerCurrencySelection.setAdapter(adapter);
+
+        //set default selection to local currency
+        spinnerCurrencySelection.setSelection(adapter.getPosition(localCurrency));
+
+    }
+
 
     /**********************************************************************
     *************************** Private Helper Section ********************
@@ -163,7 +190,11 @@ public class LoginActivity extends ActionBarActivity {
             int amountIn = Integer.parseInt(((EditText) findViewById(R.id.id_login_budget_textbox))
                     .getText().toString());
             //TODO get currency from spinner
-            defaultCurrency = Currency.getInstance("SGD");
+
+            String currency = (String) spinnerCurrencySelection.getAdapter().
+                    getItem((int)spinnerCurrencySelection.getSelectedItemId());
+
+            defaultCurrency = Currency.getInstance(currency);
             monthlyBudget = new Money(defaultCurrency, amountIn);
 
         } catch (Exception ex) {

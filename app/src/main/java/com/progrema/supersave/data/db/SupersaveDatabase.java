@@ -25,6 +25,7 @@ public class SupersaveDatabase extends SQLiteOpenHelper {
     private static final String PRIMARY_KEY_TYPE = " INTEGER PRIMARY KEY AUTOINCREMENT";
     private static final String TEXT_TYPE = " TEXT NOT NULL";
     private static final String INT_TYPE = " INTEGER";
+    private static final String REAL_TYPE = " REAL";
 
     /*old database name*/
     private static final String TABLE_CASH = "TableCash";
@@ -47,18 +48,18 @@ public class SupersaveDatabase extends SQLiteOpenHelper {
                 + BaseColumns._ID + PRIMARY_KEY_TYPE + ","
                 + UserColumns.USER_NAME + TEXT_TYPE + ","
                 + UserColumns.DEFAULT_CURRENCY + TEXT_TYPE + ","
-                + UserColumns.DEFAULT_MONTHLY_BUDGET + INT_TYPE + ","
+                + UserColumns.DEFAULT_MONTHLY_BUDGET + REAL_TYPE + ","
                 + UserColumns.CYCLE_DATE + INT_TYPE + ","
                 + UserColumns.ACTIVE_BUDGET_ID + INT_TYPE + ","
-                + UserColumns.TOTAL_SAVING + INT_TYPE + ","
+                + UserColumns.TOTAL_SAVING + REAL_TYPE + ","
                 + " FOREIGN KEY (" + UserColumns.ACTIVE_BUDGET_ID + ") REFERENCES "
                 + Tables.BUDGET + " (" + BaseColumns._ID + ")"
                 + " )");
 
         db.execSQL("CREATE TABLE " + Tables.BUDGET + " ("
                 + BaseColumns._ID + PRIMARY_KEY_TYPE + ","
-                + BudgetColumns.INITIAL_AMOUNT + INT_TYPE + ","
-                + BudgetColumns.USED_AMOUNT + INT_TYPE + ","
+                + BudgetColumns.INITIAL_AMOUNT + REAL_TYPE + ","
+                + BudgetColumns.USED_AMOUNT + REAL_TYPE + ","
                 + BudgetColumns.START_DATE + INT_TYPE + ","
                 + BudgetColumns.END_DATE + INT_TYPE
                 +")");
@@ -68,9 +69,9 @@ public class SupersaveDatabase extends SQLiteOpenHelper {
                 + ExpenseColumns.BUDGET_ID + INT_TYPE + ","
                 + ExpenseColumns.TIMESTAMP + TEXT_TYPE + ","
                 + ExpenseColumns.CURRENCY + TEXT_TYPE + ","
-                + ExpenseColumns.EXCHANGE_RATE + TEXT_TYPE + ","
-                + ExpenseColumns.AMOUNT + INT_TYPE + ","
-                + ExpenseColumns.CATEGORY_ID + TEXT_TYPE + ","
+                + ExpenseColumns.EXCHANGE_RATE + REAL_TYPE + ","
+                + ExpenseColumns.AMOUNT + REAL_TYPE + ","
+                + ExpenseColumns.CATEGORY_ID + INT_TYPE + ","
                 + ExpenseColumns.OCCURRENCE + INT_TYPE + ","
                 + ExpenseColumns.NOTES + TEXT_TYPE + ","
                 + " FOREIGN KEY (" + ExpenseColumns.BUDGET_ID + ") REFERENCES "
@@ -88,8 +89,8 @@ public class SupersaveDatabase extends SQLiteOpenHelper {
                 + SavinggoalColumns.TIMESTAMP + TEXT_TYPE + ","
                 + SavinggoalColumns.NAME + TEXT_TYPE + ","
                 + SavinggoalColumns.CURRENCY + TEXT_TYPE + ","
-                + SavinggoalColumns.EXCHANGE_RATE + TEXT_TYPE + ","
-                + SavinggoalColumns.PRICE + INT_TYPE + ","
+                + SavinggoalColumns.EXCHANGE_RATE + REAL_TYPE + ","
+                + SavinggoalColumns.PRICE + REAL_TYPE + ","
                 + SavinggoalColumns.STATUS + INT_TYPE + ","
                 + SavinggoalColumns.START_DATE + TEXT_TYPE + ","
                 + SavinggoalColumns.TARGET_DATE + TEXT_TYPE + ","

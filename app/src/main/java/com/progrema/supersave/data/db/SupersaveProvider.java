@@ -67,8 +67,8 @@ public class SupersaveProvider extends ContentProvider {
 
                 //add new budget
                 ContentValues newBudget = new ContentValues();
-                newBudget.put(SupersaveContract.Budgets.INITIAL_AMOUNT, contentValues.getAsInteger(SupersaveContract.Budgets.INITIAL_AMOUNT));
-                newBudget.put(SupersaveContract.Budgets.USED_AMOUNT, contentValues.getAsInteger(SupersaveContract.Budgets.USED_AMOUNT));
+                newBudget.put(SupersaveContract.Budgets.INITIAL_AMOUNT, contentValues.getAsDouble(SupersaveContract.Budgets.INITIAL_AMOUNT));
+                newBudget.put(SupersaveContract.Budgets.USED_AMOUNT, contentValues.getAsDouble(SupersaveContract.Budgets.USED_AMOUNT));
                 newBudget.put(SupersaveContract.Budgets.START_DATE, contentValues.getAsLong(SupersaveContract.Budgets.START_DATE));
                 newBudget.put(SupersaveContract.Budgets.END_DATE, contentValues.getAsLong(SupersaveContract.Budgets.END_DATE));
                 long budgetID = db.insertOrThrow(SupersaveDatabase.Tables.BUDGET, null, newBudget);

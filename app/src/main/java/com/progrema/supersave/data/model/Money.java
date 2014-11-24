@@ -9,7 +9,7 @@ import java.util.Currency;
 public class Money {
 
     private Currency currency;
-    private int amount;         //in cents
+    private double amount;         //in cents
     private float exchangeRate = 1;
 
     public Money(Currency currency, int amount) {
@@ -17,7 +17,7 @@ public class Money {
         this.amount = amount;
     }
 
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
