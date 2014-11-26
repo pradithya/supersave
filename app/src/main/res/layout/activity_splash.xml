@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pomegra"
+    android:id="@+id/splash_screen_container"
+    style="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_action_supersave">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/supersave_app_title"
+            android:text="@string/about_apps_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/icon"
+            android:gravity="center"
+            android:textSize="22sp"
+            android:textColor="@color/white_action_bar">
+        </TextView>
+
+        <TextView
+            android:id="@+id/supersave_app_version"
+            android:text="@string/about_apps_version"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:layout_below="@id/icon"
+            android:textColor="@color/dark_grey">
+        </TextView>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/supersave_app_copyright"
+        android:text="@string/about_apps_copyrigth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:textColor="@color/white_action_bar">
+    </TextView>
+
+    <TextView
+        android:id="@+id/supersave_app_right_reserved"
+        android:text="@string/about_apps_right"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:textColor="@color/dark_grey">
+    </TextView>
+
+</LinearLayout>
