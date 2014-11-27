@@ -1,8 +1,8 @@
 package com.progrema.supersave.ui.activities;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,7 +28,7 @@ import java.util.Set;
 import com.progrema.supersave.util.Utils;
 import com.squareup.phrase.Phrase;
 
-public class LoginActivity extends ActionBarActivity {
+public class LoginActivity extends Activity {
 
 
     /**
